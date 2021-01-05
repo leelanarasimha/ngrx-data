@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Ngrx-Data"
+    }
+  },
+  "defaultProject": "Ngrx-Data",
+  "cli": {
+    "analytics": false
+  }
 }
