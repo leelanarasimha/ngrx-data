@@ -1,9 +1,9 @@
 import { EntityDataModuleConfig, EntityMetadataMap } from '@ngrx/data';
 
-const entityMetaData: EntityMetadataMap = {
+const entityMetadata: EntityMetadataMap = {
   Post: {},
 };
 
 export const entityConfig: EntityDataModuleConfig = {
-  entityMetaData,
+  entityMetadata,
 };
