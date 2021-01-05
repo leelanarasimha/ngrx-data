@@ -1,3 +1,4 @@
+import { PostsDataService } from './posts/posts-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { entityConfig } from './entity-metadata';
 import { environment } from './../environments/environment';
@@ -14,7 +15,7 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
 import { AddPostComponent } from './posts/add-post/add-post.component';
 import { HomeComponent } from './home/home.component';
 import { EffectsModule } from '@ngrx/effects';
-import { EntityDataModule } from '@ngrx/data';
+import { EntityDataModule, EntityDataService } from '@ngrx/data';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,14 @@ import { EntityDataModule } from '@ngrx/data';
     EffectsModule.forRoot([]),
     EntityDataModule.forRoot(entityConfig),
   ],
-  providers: [],
+  providers: [PostsDataService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(
+    entityDataService: EntityDataService,
+    PostsDataService: PostsDataService
+  ) {
+    entityDataService.registerService('Post', PostsDataService);
+  }
+}
