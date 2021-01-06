@@ -1,3 +1,4 @@
+import { PostsResolver } from './posts/posts.resolver';
 import { SinglePostComponent } from './posts/single-post/single-post.component';
 import { EditPostComponent } from './posts/edit-post/edit-post.component';
 import { AddPostComponent } from './posts/add-post/add-post.component';
@@ -8,7 +9,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'posts', component: PostsListComponent },
+  {
+    path: 'posts',
+    component: PostsListComponent,
+    resolve: { posts: PostsResolver },
+  },
   { path: 'posts/add', component: AddPostComponent },
   { path: 'posts/edit/:id', component: EditPostComponent },
   { path: 'posts/details/:id', component: SinglePostComponent },
