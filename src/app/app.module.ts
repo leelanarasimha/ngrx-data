@@ -17,6 +17,7 @@ import { AddPostComponent } from './posts/add-post/add-post.component';
 import { HomeComponent } from './home/home.component';
 import { EffectsModule } from '@ngrx/effects';
 import { EntityDataModule, EntityDataService } from '@ngrx/data';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { EntityDataModule, EntityDataService } from '@ngrx/data';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,
