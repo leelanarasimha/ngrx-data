@@ -12,6 +12,7 @@
       <th>Id</th>
       <th>Title</th>
       <th>Description</th>
+      <th>Actions</th>
     </tr>
   </thead>
 
@@ -20,6 +21,10 @@
       <td>{{ post.id }}</td>
       <td>{{ post.title }}</td>
       <td>{{ post.description }}</td>
+      <td>
+        <a [routerLink]="['/posts', 'edit', post.id]">Edit Post</a>&nbsp;
+        <a href="" (click)="onDeletePost($event, post.id)">Delete Post</a>
+      </td>
     </tr>
   </tbody>
 </table>
