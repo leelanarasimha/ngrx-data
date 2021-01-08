@@ -1,3 +1,4 @@
+import { Post } from './../models/post.model';
 import { PostsDataService } from './posts-data.service';
 import {
   EntityDefinitionService,
@@ -12,6 +13,7 @@ import { PostsListComponent } from './posts-list/posts-list.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -34,6 +36,7 @@ const routes: Routes = [
 
 const entityMetadata: EntityMetadataMap = {
   Post: {
+    sortComparer: sortByName,
     entityDispatcherOptions: {
       optimisticUpdate: true,
       optimisticDelete: false,
@@ -41,6 +44,10 @@ const entityMetadata: EntityMetadataMap = {
   },
 };
 
+function sortByName(a: Post, b: Post): number {
+  let comp = a.title.localeCompare(b.title);
+  return comp;
+}
 @NgModule({
   declarations: [
     PostsListComponent,
@@ -48,7 +55,7 @@ const entityMetadata: EntityMetadataMap = {
     EditPostComponent,
     AddPostComponent,
   ],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(routes)],
   providers: [PostsResolver, PostsDataService],
 })
 export class PostsModule {
