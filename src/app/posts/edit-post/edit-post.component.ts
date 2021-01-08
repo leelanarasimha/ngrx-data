@@ -2,7 +2,6 @@ import { PostService } from './../post.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-edit-post',
@@ -27,11 +26,13 @@ export class EditPostComponent implements OnInit {
 
     this.id = this.route.snapshot.params['id'];
     this.PostService.entities$.subscribe((posts) => {
-      const post = posts.find((post) => post.id === this.id);
-      this.editPostForm.patchValue({
-        title: post.title,
-        description: post.description,
-      });
+      if (posts.length) {
+        const post = posts.find((post) => post.id === this.id);
+        this.editPostForm.patchValue({
+          title: post.title,
+          description: post.description,
+        });
+      }
     });
   }
 
